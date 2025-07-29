@@ -1,9 +1,9 @@
-import Effect from "./components/Effect";
+import ApiFetch from "./components/ApiFetch";
 
 function App() {
   return (
     <div className="m-5">
-      <Effect />
+      <ApiFetch />
     </div>
   );
 }
