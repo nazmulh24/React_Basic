@@ -22,7 +22,7 @@ const PlayWithButton = () => {
           onClose={handleCloseAlert}
         />
       )}
-      <Button color="warning" handleClick={handleShowAlert}>
+      <Button color="warning" onClick={handleShowAlert}>
         Show Alert
       </Button>
     </div>

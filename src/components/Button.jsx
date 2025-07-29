@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ handleClick, children, color = "primary" }) => {
+const Button = ({ onClick, children, color = "primary" }) => {
   const buttonColors = {
     primary: "bg-blue-500 hover:bg-blue-600",
     success: "bg-green-500 hover:bg-green-600",
@@ -13,7 +13,7 @@ const Button = ({ handleClick, children, color = "primary" }) => {
   const classes = `${buttonColors[color]} text-white font-bold py-2 px-4 rounded-lg shadow`;
 
   return (
-    <button type="button" onClick={handleClick} className={classes}>
+    <button type="button" onClick={onClick} className={classes}>
       {children || "Click Me"}
     </button>
   );
