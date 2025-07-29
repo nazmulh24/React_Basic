@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 
-const List = () => {
-  const items = ["Item 1", "Item 2", "Item 3"];
+const List = ({ items = [], heading }) => {
+  console.log(items);
 
   const [selectedIndex, setSelectedIndex] = useState(-1);
   console.log(selectedIndex);
 
-  // const [name, setName] = useState(""); //--> DataType jemon hobe default value o temon hobe...
-
   return (
     <div className="p-6 text-xl">
-      <h1 className="text-2xl font-bold text-red-300">Item List</h1>
+      <h1 className="text-2xl font-bold text-red-300">{heading}</h1>
 
-      <ul>
+      <ul className="list-disc list-inside">
         {items.map((item, index) => (
           <li
             className={
               selectedIndex === index
-                ? "cursor-pointer hover:text-red-500 bg-blue-500 m-3"
+                ? "hover:cursor-pointer bg-blue-500 m-6"
                 : "m-3"
             }
             onClick={() => setSelectedIndex(index)}
