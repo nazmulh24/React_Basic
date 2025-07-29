@@ -11,14 +11,12 @@ const Button = ({ handleClick, children, color = "primary" }) => {
   };
 
   return (
-    <div>
-      <button
-        onClick={handleClick}
-        className={`${buttonColors[color]} text-white font-bold py-2 px-4 rounded shadow`}
-      >
-        {children || "Click Me"}
-      </button>
-    </div>
+    <button
+      onClick={handleClick}
+      className={`${buttonColors[color]} text-white font-bold py-2 px-4 rounded-lg shadow`}
+    >
+      {children || "Click Me"}
+    </button>
   );
 };
 
