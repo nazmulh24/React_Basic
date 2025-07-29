@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 const List = () => {
   const items = ["Item 1", "Item 2", "Item 3"];
 
-  let selectedIndex = -1;
-  const handleItemClick = (index) => {
-    selectedIndex = index;
-    console.log(selectedIndex);
-  };
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  console.log(selectedIndex);
+
+  // const [name, setName] = useState(""); //--> DataType jemon hobe default value o temon hobe...
 
   return (
     <div className="p-6 text-xl">
@@ -21,7 +20,7 @@ const List = () => {
                 ? "cursor-pointer hover:text-red-500 bg-blue-500 m-3"
                 : "m-3"
             }
-            onClick={() => handleItemClick(index)}
+            onClick={() => setSelectedIndex(index)}
             key={index}
           >
             {item}
