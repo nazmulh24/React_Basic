@@ -1,15 +1,17 @@
 // import "./App.css";
-import FirstComponent from "./components/FirstComponent";
-import List from "./components/List";
+import Button from "./components/Button";
 
 function App() {
-  const items = ["Item 1", "Item 2", "Item 3"];
-  const cities = ["New York", "Los Angeles", "Chicago"];
+  const handleClick = () => {
+    console.log("Button Clicked!");
+  };
 
   return (
     <>
-      <List items={items} heading="Item List" />
-      <List items={cities} heading="City List" />
+      {/* <Button handleClick={handleClick} /> */}
+      <Button handleClick={handleClick} >
+        My_Button
+      </Button>
     </>
   );
 }
