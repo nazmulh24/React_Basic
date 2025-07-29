@@ -4,7 +4,7 @@ import PlayWithButton from "./components/PlayWithButton";
 function App() {
   return (
     <>
-      <PlayWithButton />
+      {/* <PlayWithButton /> */}
       <Person />
     </>
   );
