@@ -1,3 +1,5 @@
+import { CircleX } from "lucide-react";
+
 const Alert = ({
   message = "This is an alert message!",
   type = "info",
@@ -17,9 +19,10 @@ const Alert = ({
       <span>{message}</span>
       <button
         onClick={onClose}
-        className="text-lg transition-all duration-300 transform hover:scale-125"
+        className="text-lg text-red-500 transition-all duration-300 transform hover:scale-125"
       >
         ✘
+        {/* <CircleX color="red" /> */}
       </button>
     </div>
   );
