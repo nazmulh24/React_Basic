@@ -3,30 +3,30 @@ import React from "react";
 const List = () => {
   const items = ["Item 1", "Item 2", "Item 3"];
 
-  items.map((item) => {
-    console.log(item);
-  });
+  let selectedIndex = -1;
+  const handleItemClick = (index) => {
+    selectedIndex = index;
+    console.log(selectedIndex);
+  };
 
   return (
-    <div className="p-6">
+    <div className="p-6 text-xl">
       <h1 className="text-2xl font-bold text-red-300">Item List</h1>
 
-      <div>
-        {items.map((item, index) => (
-          <p key={index}>{item}</p>
-        ))}
-      </div>
-      {/* Another way */}
-      <div>
-        {items.map((item, index) => {
-          return <p key={index}>{item}</p>;
-        })}
-      </div>
-      {/* Another way like --> List */}
       <ul>
-        {items.map((item, index) => {
-          return <li key={index}>{item}</li>;
-        })}
+        {items.map((item, index) => (
+          <li
+            className={
+              selectedIndex === index
+                ? "cursor-pointer hover:text-red-500 bg-blue-500 m-3"
+                : "m-3"
+            }
+            onClick={() => handleItemClick(index)}
+            key={index}
+          >
+            {item}
+          </li>
+        ))}
       </ul>
     </div>
   );
