@@ -10,11 +10,10 @@ const Button = ({ handleClick, children, color = "primary" }) => {
     alert: "bg-yellow-500 hover:bg-yellow-600",
   };
 
+  const classes = `${buttonColors[color]} text-white font-bold py-2 px-4 rounded-lg shadow`;
+
   return (
-    <button
-      onClick={handleClick}
-      className={`${buttonColors[color]} text-white font-bold py-2 px-4 rounded-lg shadow`}
-    >
+    <button type="button" onClick={handleClick} className={classes}>
       {children || "Click Me"}
     </button>
   );

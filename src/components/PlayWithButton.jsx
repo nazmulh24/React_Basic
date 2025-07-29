@@ -3,18 +3,28 @@ import Alert from "./Alert";
 import Button from "./Button";
 
 const PlayWithButton = () => {
-  const handleClick = () => {
-    console.log("Button clicked!");
-  };
-
   const [alertVisible, setAlertVisible] = useState(false);
 
+  const handleShowAlert = () => {
+    setAlertVisible(true);
+  };
+
+  const handleCloseAlert = () => {
+    setAlertVisible(false);
+  };
+
   return (
-    <div>
+    <div className="p-4">
       {alertVisible && (
-        <Alert type="warning" message="This is a warning alert!" />
+        <Alert
+          type="warning"
+          message="This is a warning alert!"
+          onClose={handleCloseAlert}
+        />
       )}
-      <Button handleClick={() => setAlertVisible(true)}>Click Me</Button>
+      <Button color="warning" handleClick={handleShowAlert}>
+        Show Alert
+      </Button>
     </div>
   );
 };
