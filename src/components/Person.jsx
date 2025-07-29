@@ -2,35 +2,20 @@ import React, { useState } from "react";
 import Button from "./Button";
 
 const Person = () => {
-  //   const [firstName, setFirstName] = useState("");
-  //   const [lastName, setLastName] = useState("");
-
   const person_obj = {
     firstName: "first_name",
     lastName: "last_name",
     email: "email@example.com",
-    address: {
-      //----> Nested object
+    address: { //----> Nested object
       city: "DKA",
       country: "BD",
     },
   };
   const [Person, setPerson] = useState(person_obj);
 
-  // --> State is Immutable. We cannot change the state directly.
-
   const handleClick = () => {
-    // setFirstName("Nazmul");
-    // setLastName("Hossain");
-
-    // const newPerson = {
-    //   firstName: "Nazmul",
-    //   lastName: "Hossain",
-    //   email: "nazmul@hossain.com",
-    // };
-
     const newPerson = {
-      ...Person, //---> Spread operator to copy existing properties
+      ...Person,
 
       email: "nazmul@hossain.com",
 
@@ -46,9 +31,6 @@ const Person = () => {
 
   return (
     <div className="p-6">
-      {/* <h1>
-        {firstName} {lastName}
-      </h1> */}
       <h1>
         {Person.firstName} {Person.lastName} - {Person.email} --{" "}
         {Person.address.city}, {Person.address.country}
