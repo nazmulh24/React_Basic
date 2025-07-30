@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useRef } from "react";
 import Button from "./Button";
 
 const Form = () => {
+  const nameRef = useRef(null);
+  const ageRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  const person = {
+    name: "",
+    age: "",
+    email: "",
+    password: "",
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault(); //--> Prevent the default form submission behavior
 
-    console.log("Form submitted");
+    if (nameRef.current !== null) person.name = nameRef.current.value;
+    if (ageRef.current !== null) person.age = parseInt(ageRef.current.value);
+    if (emailRef.current.value) person.email = emailRef.current.value;
+    if (passwordRef.current.value) person.password = passwordRef.current.value;
+
+    console.log(person);
   };
 
   return (
@@ -17,11 +34,27 @@ const Form = () => {
             Name :
           </label>
           <input
+            ref={nameRef}
             id="name"
             type="text"
             className="px-3 py-2 border rounded-lg w-full bg-gray-100 text-gray-900 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Enter your name here..."
-            required
+            // required
+          />
+        </div>
+
+        {/* Age */}
+        <div className="mb-4">
+          <label htmlFor="age" className="block mb-1 text-gray-900 font-bold">
+            Age :
+          </label>
+          <input
+            ref={ageRef}
+            id="age"
+            type="number"
+            className="px-3 py-2 border rounded-lg w-full bg-gray-100 text-gray-900 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Enter your age here..."
+            // required
           />
         </div>
 
@@ -31,11 +64,12 @@ const Form = () => {
             Email :
           </label>
           <input
+            ref={emailRef}
             id="email"
             type="email"
             className="px-3 py-2 border rounded-lg w-full bg-gray-100 text-gray-900 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Enter your email here..."
-            required
+            // required
           />
         </div>
 
@@ -48,11 +82,12 @@ const Form = () => {
             Password :
           </label>
           <input
+            ref={passwordRef}
             id="password"
             type="password"
             className="px-3 py-2 border rounded-lg w-full bg-gray-100 text-gray-900 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Enter your password here..."
-            required
+            // required
           />
         </div>
 
