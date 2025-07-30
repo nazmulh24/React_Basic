@@ -33,6 +33,29 @@ const CartApp = () => {
     }
   };
 
+  // ---> Increase quantity of an item
+  const increaseQuantity = (itemName) => {
+    setCart(
+      cart.map((item) =>
+        item.name === itemName ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  // ---> Decrease quantity of an item
+  const decreaseQuantity = (itemName) => {
+    setCart(
+      cart.map((item) =>
+        item.name === itemName ? { ...item, quantity: item.quantity - 1 } : item
+      )
+    );
+  };
+
+  // ---> Remove item from the cart
+  const removeItem = (itemName) => {
+    setCart(cart.filter((item) => item.name !== itemName));
+  };
+
   return (
     <div className="w-1/3 mx-auto p-6 border rounded-lg shadow">
       <h2 className="text-2xl font-semibold mb-6 text-center">
@@ -89,15 +112,24 @@ const CartApp = () => {
                   {item.name} -- {(item.price * item.quantity).toFixed(2)}$
                 </span>
                 <div className="flex items-center">
-                  <button className="rounded-full w-8 h-8 bg-red-500 text-white">
+                  <button
+                    onClick={() => decreaseQuantity(item.name)}
+                    className="rounded-full w-8 h-8 bg-red-500 text-white"
+                  >
                     -
                   </button>
                   <span className="mx-2">{item.quantity}</span>
-                  <button className="rounded-full w-8 h-8 bg-green-500 text-white">
+                  <button
+                    onClick={() => increaseQuantity(item.name)}
+                    className="rounded-full w-8 h-8 bg-green-500 text-white"
+                  >
                     +
                   </button>
                 </div>
-                <button>
+                <button
+                  onClick={() => removeItem(item.name)}
+                  className="text-red-500"
+                >
                   <Trash2 />
                 </button>
               </li>
