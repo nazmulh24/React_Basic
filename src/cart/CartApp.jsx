@@ -45,15 +45,30 @@ const CartApp = () => {
   // ---> Decrease quantity of an item
   const decreaseQuantity = (itemName) => {
     setCart(
-      cart.map((item) =>
-        item.name === itemName ? { ...item, quantity: item.quantity - 1 } : item
-      )
+      cart
+        .map((item) =>
+          item.name === itemName
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0) // --> Remove items with quantity 0
     );
   };
 
   // ---> Remove item from the cart
   const removeItem = (itemName) => {
     setCart(cart.filter((item) => item.name !== itemName));
+  };
+
+  // ---> Calculate total price of the cart
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  //--> Remove all items from the cart
+  const clearCart = () => {
+    setCart([]);
   };
 
   return (
@@ -137,10 +152,12 @@ const CartApp = () => {
           </ul>
 
           <div className="mt-6">
-            <span className="font-bold text-lg">Total : 100</span>
+            <span className="font-bold text-lg">
+              Total : ${totalPrice.toFixed(2)}
+            </span>
           </div>
 
-          <Button color="danger" className="mt-4 w-full">
+          <Button color="danger" className="mt-4 w-full" onClick={clearCart}>
             Clear Cart
           </Button>
         </div>
