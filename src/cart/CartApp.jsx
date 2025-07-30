@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../components/Button.jsx";
 import { useForm } from "react-hook-form";
 import { Trash2 } from "lucide-react";
@@ -10,13 +10,27 @@ const CartApp = () => {
     formState: { errors },
   } = useForm();
 
-  const cart = [
-    { name: "item1", price: 10.0 },
-    { name: "item2", price: 15.0 },
-  ];
+  const [cart, setCart] = useState([]);
 
+  // ---> Add item to the cart
   const addItem = (data) => {
     console.log(data);
+
+    const existingItem = cart.find((item) => item.name === data.itemName);
+    if (existingItem) {
+      setCart(
+        cart.map((item) =>
+          item.name === data.itemName
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setCart([
+        ...cart,
+        { name: data.itemName, price: parseFloat(data.price), quantity: 1 },
+      ]);
+    }
   };
 
   return (
@@ -72,13 +86,13 @@ const CartApp = () => {
                 className="flex justify-between items-center border px-3 py-2 rounded"
               >
                 <span>
-                  {item.name} -- {item.price.toFixed(2)}$
+                  {item.name} -- {(item.price * item.quantity).toFixed(2)}$
                 </span>
                 <div className="flex items-center">
                   <button className="rounded-full w-8 h-8 bg-red-500 text-white">
                     -
                   </button>
-                  <span className="mx-2">1</span>
+                  <span className="mx-2">{item.quantity}</span>
                   <button className="rounded-full w-8 h-8 bg-green-500 text-white">
                     +
                   </button>
