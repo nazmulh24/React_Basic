@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../components/Button.jsx";
 import { useForm } from "react-hook-form";
+import { Trash2 } from "lucide-react";
 
 const CartApp = () => {
   const {
@@ -9,7 +10,12 @@ const CartApp = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const cart = [
+    { name: "item1", price: 10.0 },
+    { name: "item2", price: 15.0 },
+  ];
+
+  const addItem = (data) => {
     console.log(data);
   };
 
@@ -19,7 +25,8 @@ const CartApp = () => {
         🛒 Shopping Cart
       </h2>
 
-      <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+      {/* Add Cart Items Here */}
+      <form className="space-y-4" onSubmit={handleSubmit(addItem)}>
         <div>
           <input
             {...register("itemName", { required: true })}
@@ -52,37 +59,50 @@ const CartApp = () => {
         </Button>
       </form>
 
-      {/* {cart.length > 0 && (
-        <div className="mt-6">
-          <h3 className="text-xl font-medium mb-2">
-            Items in Cart ({cart.length}):
+      {/* Cart Items List */}
+      {cart.length > 0 ? (
+        <div className="m-6">
+          <h3 className="text-xl font-medium mb-2 text-center">
+            Items in Cart : {cart.length}
           </h3>
-          <ul className="space-y-2">
+          <ul className="space-y-4">
             {cart.map((item) => (
               <li
-                key={item.id}
+                key={item.name}
                 className="flex justify-between items-center border px-3 py-2 rounded"
               >
                 <span>
-                  {item.name} x {item.quantity}
+                  {item.name} -- {item.price.toFixed(2)}$
                 </span>
-                <button
-                  onClick={() => handleRemove(item.id)}
-                  className="text-red-500 hover:underline"
-                >
-                  Remove
+                <div className="flex items-center">
+                  <button className="rounded-full w-8 h-8 bg-red-500 text-white">
+                    -
+                  </button>
+                  <span className="mx-2">1</span>
+                  <button className="rounded-full w-8 h-8 bg-green-500 text-white">
+                    +
+                  </button>
+                </div>
+                <button>
+                  <Trash2 />
                 </button>
               </li>
             ))}
           </ul>
-          <button
-            onClick={handleClear}
-            className="mt-4 text-sm text-gray-600 hover:text-red-500 hover:underline"
-          >
+
+          <div className="mt-6">
+            <span className="font-bold text-lg">Total : 100</span>
+          </div>
+
+          <Button color="danger" className="mt-4 w-full">
             Clear Cart
-          </button>
+          </Button>
         </div>
-      )} */}
+      ) : (
+        <p className="text-gray-500 text-center mt-6">
+          Your cart is empty. Add some items!
+        </p>
+      )}
     </div>
   );
 };
